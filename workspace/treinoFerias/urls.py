@@ -17,12 +17,25 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import re_path
-from .views import home, clientes, carrinho, sobreNos, cliente_detail
+from .views import home, clientes, carrinho, sobreNos, cliente_detail, cliente_por_nome
 
 urlpatterns = [
     re_path(r'^$', home),
     re_path(r'^clientes/$', clientes),
+
+    # nessa url abaixo, utiliza-se regex da seguinte forma: 
+    # apos determinar cliente em: cliente/, define que o id do cliente será um parametro chamado id em: 
+    # /(?P) dizendo q será um parametro
+    # <id> dizendo que se chamará id
+    # depois, temos que passar o tipo do id e o tamanho dele em: \d{1,3} -> inteiro, podendo ter 1 até 3 casas (1-999)
+    # por fim, fecha a barra e encerra com dolar. então, de regex, temos: /(?P<id>\d{1,3})/
+
     re_path(r'^cliente/(?P<id>\d{1,3})/$' , cliente_detail),
+
+    # se eu quiser ids de qualquer tamanho, coloco + ao inves de {1,3} depois de \d
+
+    re_path(r'^cliente/(?P<nome>\w+)/$' , cliente_por_nome),
+
     re_path(r'^carrinho/$', carrinho),
     re_path(r'^sobre/$', sobreNos),
     re_path(r'^admin/', admin.site.urls),

@@ -16,4 +16,7 @@ def sobreNos(request):
     return HttpResponse("Página focada treinar conceitos http e django")
 
 def cliente_detail(request, id):
-    return HttpResponse("Detalhe do cliente")
+    return HttpResponse(id)
+
+def cliente_por_nome(request, nome):
+    return HttpResponse(f"Olá, {nome}")
