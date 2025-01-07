@@ -16,12 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import home, clientes, carrinho, sobreNos
+from django.urls import re_path
+from .views import home, clientes, carrinho, sobreNos, cliente_detail
 
 urlpatterns = [
-    path(r'admin/', admin.site.urls),
-    path(r'clientes/', clientes),
-    path(r'carrinho/', carrinho),
-    path(r'sobre/', sobreNos),
-    path(r'', home),
+    re_path(r'^$', home),
+    re_path(r'^clientes/$', clientes),
+    re_path(r'^cliente/(?P<id>\d{1,3})/$' , cliente_detail),
+    re_path(r'^carrinho/$', carrinho),
+    re_path(r'^sobre/$', sobreNos),
+    re_path(r'^admin/', admin.site.urls),
+    
 ]
