@@ -17,7 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import re_path
-from .views import home, clientes, carrinho, sobreNos, cliente_detail, cliente_por_nome
+from .views import home, carrinho, sobreNos
+from clientes.views import clientes, cliente_detail, cliente_por_nome
 
 urlpatterns = [
     re_path(r'^$', home),
